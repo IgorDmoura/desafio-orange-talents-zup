@@ -1,0 +1,17 @@
+server:
+  error:
+    include-stacktrace: on_param
+
+spring:
+  application:
+    name: zup_desafio
+  datasource:
+    url: jdbc:mysql://localhost:3306/zup_desafio?createDatabaseIfNotExit=true
+    username: zup
+    password: igor
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect

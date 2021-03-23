@@ -1,0 +1,19 @@
+version: '2.4'
+
+services:
+  db:
+    image: mysql
+    container_name: mysql_desafio
+    environment:
+      MYSQL_ROOT_PASSWORD: igor
+      MYSQL_USER: zup
+      MYSQL_PASSWORD: igor
+      MYSQL_DATABASE: zup_desafio
+    ports:
+      - "3306:3306"
+    volumes:
+      - zup_desafio:/var/lib/mysql
+    mem_limit: 512m
+
+volumes:
+  zup_desafio:
