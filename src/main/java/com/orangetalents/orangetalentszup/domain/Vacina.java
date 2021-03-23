@@ -33,16 +33,6 @@ public class Vacina {
     public Vacina() {
     }
 
-    public static Vacina findById(Vacina vacina, Pessoa pessoa){
-        Vacina vacinatemp = new Vacina();
-        vacinatemp.setNomeVacina(vacina.getNomeVacina());
-        vacinatemp.setPessoa(pessoa);
-        vacinatemp.setEmail(pessoa.getEmail());
-        vacinatemp.setDataVacina(vacina.getDataVacina());
-        return vacina;
-    }
-
-
     public Long getId() {
         return id;
     }

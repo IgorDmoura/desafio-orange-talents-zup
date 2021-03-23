@@ -1,17 +1,13 @@
 package com.orangetalents.orangetalentszup.requests;
 
-import com.orangetalents.orangetalentszup.domain.Pessoa;
-import com.orangetalents.orangetalentszup.domain.Vacina;
-
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
 public class VacinaPostRequestBody {
     @NotBlank(message = "O campo 'nome da vacina' não pode estar vazio")
     private String nomeVacina;
-    @NotBlank(message = "O campo 'email da pessoa' não pode estar vazio")
-    @Email
-    private String email;
     @Past(message = "A data de vacina deve estar no passado")
     @NotNull(message = "O campo 'data da vacina' não pode estar vazio")
     private LocalDate dataVacina;
@@ -22,14 +18,6 @@ public class VacinaPostRequestBody {
 
     public void setNomeVacina(String nomeVacina) {
         this.nomeVacina = nomeVacina;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public LocalDate getDataVacina() {
