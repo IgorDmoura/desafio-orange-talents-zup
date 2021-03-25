@@ -5,5 +5,6 @@ Aplicação de cadastro de pessoas e controle de vacinas na população brasilei
 Endpoints:
 
 /pessoas/cadastro
+
 /vacinas/cadastro
 
