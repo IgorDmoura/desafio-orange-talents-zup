@@ -1,7 +1,12 @@
 package com.orangetalents.orangetalentszup.domain;
 
+import com.orangetalents.orangetalentszup.requests.PessoaPostRequestBody;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
 @Entity
@@ -9,11 +14,10 @@ public class Vacina {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false,length = 30)
+    @NotBlank
     private String nomeVacina;
-    @Column(unique = true, nullable = false, length = 50)
-    private String email;
-    @Column(nullable = false)
+    @Past
+    @NotNull
     private LocalDate dataVacina;
 
     @ManyToOne
@@ -21,15 +25,13 @@ public class Vacina {
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 
-    public Vacina(Long id, String nomeVacina, String email, LocalDate dataVacina, @NotNull Pessoa pessoa) {
+    public Vacina(Long id, String nomeVacina, LocalDate dataVacina, @NotNull Pessoa pessoa) {
         this.id = id;
         this.nomeVacina = nomeVacina;
-        this.email = email;
         this.dataVacina = dataVacina;
         this.pessoa = pessoa;
     }
 
-    @Deprecated
     public Vacina() {
     }
 
@@ -47,14 +49,6 @@ public class Vacina {
 
     public void setNomeVacina(String nomeVacina) {
         this.nomeVacina = nomeVacina;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public LocalDate getDataVacina() {

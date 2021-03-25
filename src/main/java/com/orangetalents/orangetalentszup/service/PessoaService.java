@@ -8,10 +8,8 @@ import com.orangetalents.orangetalentszup.requests.PessoaPostRequestBody;
 import com.orangetalents.orangetalentszup.response.PessoaPostResponseBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-
-import javax.persistence.EntityNotFoundException;
-import java.util.Optional;
 
 @Service
 public class PessoaService {
@@ -24,7 +22,7 @@ public class PessoaService {
         this.pessoaResponseMapper = pessoaResponseMapper;
         this.pessoaMapper = pessoaMapper;
     }
-
+       @Transactional
     public PessoaPostResponseBody criarNovaPessoa(PessoaPostRequestBody pessoaPostRequestBody){
         if(pessoaRepository.existsPessoaByCpf(pessoaPostRequestBody.getCpf()) || pessoaRepository.existsPessoaByEmail(pessoaPostRequestBody.getEmail())){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Cpf ou Email já está registrado");
@@ -34,9 +32,4 @@ public class PessoaService {
         return pessoaResponseMapper.toPessoaPostResponseBody(pessoa);
     }
 
-    public Pessoa findByEmail(String email){
-        Optional<Pessoa> pessoaOptional = Optional.ofNullable(pessoaRepository.findPessoaByEmail(email)
-                .orElseThrow(()-> new EntityNotFoundException("Pessoa não encontrada")));
-        return pessoaOptional.get();
-    }
 }

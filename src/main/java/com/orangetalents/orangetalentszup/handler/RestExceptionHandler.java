@@ -16,7 +16,7 @@ public class RestExceptionHandler {
     public ResponseEntity<ExceptionDetails> handlerMethodExceptionDetails(MethodArgumentNotValidException mav){
                 return new ResponseEntity<>(new ExceptionDetails("Bad Request Exception, Check the Documentation",
                         HttpStatus.BAD_REQUEST.value(),
-                        mav.getMessage(),
+                        mav.getBindingResult().getAllErrors().get(0).getDefaultMessage(),
                         mav.getClass().getName(),
                         LocalDateTime.now()),HttpStatus.BAD_REQUEST);
     }

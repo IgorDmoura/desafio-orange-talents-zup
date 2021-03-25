@@ -1,6 +1,12 @@
 package com.orangetalents.orangetalentszup.domain;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
 @Entity
@@ -8,13 +14,16 @@ public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, length = 100)
+    @NotBlank
     private String nome;
-    @Column(unique = true, nullable = false, length = 50)
+    @Email
+    @NotBlank
     private String email;
-    @Column(unique = true,nullable = false, length = 11)
+    @CPF
+    @NotBlank
     private String cpf;
-    @Column(nullable = false)
+    @Past
+    @NotNull
     private LocalDate nascimento;
 
     public Pessoa(Long id, String nome, String email, String cpf, LocalDate nascimento) {
@@ -25,8 +34,7 @@ public class Pessoa {
         this.nascimento = nascimento;
     }
 
-    @Deprecated
-    protected Pessoa() {
+    public Pessoa() {
     }
 
     public Long getId() {

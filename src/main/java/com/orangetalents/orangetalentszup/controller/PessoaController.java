@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("pessoas")
 public class PessoaController {
@@ -20,7 +22,7 @@ public class PessoaController {
     }
 
     @PostMapping(path ="/cadastro")
-    public ResponseEntity<PessoaPostResponseBody> criarNovaPessoa(@RequestBody PessoaPostRequestBody pessoaPostRequestBody){
+    public ResponseEntity<PessoaPostResponseBody> criarNovaPessoa(@Valid @RequestBody PessoaPostRequestBody pessoaPostRequestBody){
         return new ResponseEntity<>(pessoaService.criarNovaPessoa(pessoaPostRequestBody), HttpStatus.CREATED);
     }
 }

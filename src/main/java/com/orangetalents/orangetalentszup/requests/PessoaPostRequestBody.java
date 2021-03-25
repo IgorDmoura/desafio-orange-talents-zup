@@ -1,9 +1,7 @@
 package com.orangetalents.orangetalentszup.requests;
 
-import com.orangetalents.orangetalentszup.domain.Vacina;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
@@ -19,6 +17,17 @@ public class PessoaPostRequestBody {
     @Past(message = "A data de nascimento deve estar no passado")
     @NotNull(message = "O campo 'nascimento' não pode estar vazio")
     private LocalDate nascimento;
+
+    public PessoaPostRequestBody(@NotBlank(message = "O campo 'nome' não pode estar vazio") String nome, @NotBlank(message = "O campo 'email' não pode estar vazio") @Email String email, @CPF @Size(message = "O campo 'cpf' deve conter 11 dígitos", min = 11, max = 11) String cpf, @Past(message = "A data de nascimento deve estar no passado") @NotNull(message = "O campo 'nascimento' não pode estar vazio") LocalDate nascimento) {
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.nascimento = nascimento;
+    }
+
+    public PessoaPostRequestBody() {
+    }
+
 
     public String getNome() {
         return nome;

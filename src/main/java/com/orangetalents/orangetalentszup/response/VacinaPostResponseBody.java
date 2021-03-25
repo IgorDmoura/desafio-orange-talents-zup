@@ -10,6 +10,13 @@ public class VacinaPostResponseBody {
     private LocalDate dataVacina;
     private Pessoa pessoa;
 
+    public VacinaPostResponseBody(Long id, String nomeVacina, LocalDate dataVacina, Pessoa pessoa) {
+        this.id = id;
+        this.nomeVacina = nomeVacina;
+        this.dataVacina = dataVacina;
+        this.pessoa = pessoa;
+    }
+
     public Long getId() {
         return id;
     }
